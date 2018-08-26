@@ -143,7 +143,7 @@ class App extends Component {
     var btn = document.createElement("INPUT");
     btn.className="btn btn-danger btn-xs";
     btn.type = "button";
-    btn.name infoItemGivenId
+    btn.name = "add";
     btn.value="Request to Become an Administrator";
     btn.onclick = this.handleShopperBecomeAdministrator.bind(this);
 
@@ -323,7 +323,7 @@ class App extends Component {
         var tbdy = document.createElement('tbody');
         var tr = document.createElement('tr');
         for (var i = 0; i < nb_items; i++) {
-          contract.getItemInfoByIdx(account, i, {from:accounts[0]}).then((result) => {
+          contract.infoItemGivenId(account, i, {from:accounts[0]}).then((result) => {
             var trr = document.createElement('tr');
             var tdd = document.createElement('td');
             tdd.appendChild(document.createTextNode(result[0]))
@@ -389,7 +389,7 @@ class App extends Component {
         var td = document.createElement('td');
 
         for (var i = 0; i < nb_items; i++) {
-          contract.getPurchasedGoodsInfoByIdx(account, i, {from:accounts[0]}).then((result) => {
+          contract.infoPurchasedGoodsGivenId(account, i, {from:accounts[0]}).then((result) => {
             var trr = document.createElement('tr');
             var tdd = document.createElement('td');
             tdd.appendChild(document.createTextNode(result[0]))

@@ -126,7 +126,7 @@ contract Marketplace {
       return false;
     }
 
-    // Get number of items
+    // retrieve number of items
     function nbItemsInStore(address _StoreOwner)
     public
     view
@@ -134,7 +134,7 @@ contract Marketplace {
       return storeOfMarketPlaceOwner[_StoreOwner].itemIdList.length;
     }
 
-    // Get item name with Idx
+    // retrieve item name with Idx
     function nameItemGivenId(address _StoreOwner, uint256 idx)
     public
     view
@@ -143,7 +143,7 @@ contract Marketplace {
     }
 
     // Get item info with Idx
-    function getItemInfoByIdx(address _StoreOwner, uint256 idx)
+    function infoItemGivenId(address _StoreOwner, uint256 idx)
     public
     view
     returns(uint256, string, uint256, uint256) {
@@ -219,20 +219,20 @@ contract Marketplace {
     // Functions Related to Shopper
     ///////////////////////////////////////////////////////////
 
-    // Get number of purchased goods
-    function nbPurchasedGoods(address _goodsmarketplaceowner)
+    //  number of purchased goods
+    function nbPurchasedGoods(address _goods)
     public
     view
     returns(uint256) {
-      return purchasedGoodsOfShopper[_goodsmarketplaceowner].itemIdList.length;
+      return purchasedGoodsOfShopper[_goods].itemIdList.length;
     }
 
-    // Get purchased goods info with Idx
-    function getPurchasedGoodsInfoByIdx(address _goodsmarketplaceowner, uint256 idx)
+    // retrieve purchased goods info with Idx
+    function infoPurchasedGoodsGivenId(address _goods, uint256 idx)
     public
     view
     returns(uint256, string, uint256, uint256) {
-      return (idx, purchasedGoodsOfShopper[_goodsmarketplaceowner].itemIdList[idx].name, purchasedGoodsOfShopper[_goodsmarketplaceowner].itemIdList[idx].price, purchasedGoodsOfShopper[_goodsmarketplaceowner].itemIdList[idx].qty);
+      return (idx, purchasedGoodsOfShopper[_goods].itemIdList[idx].name, purchasedGoodsOfShopper[_goods].itemIdList[idx].price, purchasedGoodsOfShopper[_goods].itemIdList[idx].qty);
     }
 
     // Function for shopper to purchase an item
@@ -323,7 +323,7 @@ contract Marketplace {
     function isAdministratorToBe(address entityAddress)
     public
     constant
-    returns(bool isinfoItemGivenId){
+    returns(bool isIndeed){
       if (administratorsToBeList.length == 0) return false;
       return (administratorsToBeList[administratorsToBe[entityAddress].listPointer] == entityAddress);
     }
@@ -475,9 +475,12 @@ contract Marketplace {
       }
       return nbStoreOwners();
     }
+    ///////////////////////////////////////////////////////////
 
 
-    /* Functions to retrieve contract storage informations */
+    ///////////////////////////////////////////////////////////
+    // Other Functions
+    ///////////////////////////////////////////////////////////
     function getRole()
     public view
     returns (uint256) {
