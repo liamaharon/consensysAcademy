@@ -256,38 +256,29 @@ contract Marketplace {
     }
 
 
-    function nbPurchasedGoods()
-    public
-    constant
-    returns(uint256 entityCount) {
-      return purchasedGoodsOfShopper[msg.sender].itemIdList.length;
-    }
-
-
     ///////////////////////////////////////////////////////////
     // Functions Related to administrators
     ///////////////////////////////////////////////////////////
 
-    function deleteStoreOwner(address entityAddress)
+    function deleteStoreOwnerToBe(address entityAddress)
     private
     m_isAdministrator(msg.sender)
     m_isNotadministratorToBe(msg.sender)
     m_isNotmarketplaceowner(msg.sender)
     m_isNotStoreOwner(msg.sender)
     m_isNotStoreOwnerToBe(msg.sender)
-    m_isStoreOwner(entityAddress)
-    m_isNotStoreOwnerToBe(entityAddress)
+    m_isStoreOwnerToBe(entityAddress)
+    m_isNotStoreOwner(entityAddress)
     m_isNotadministrator(entityAddress)
     m_isNotadministratorToBe(entityAddress)
     m_isNotmarketplaceowner(entityAddress)
     returns(bool) {
-      uint256 rowToDelete = storeOwners[entityAddress].listPointer;
-      address keyToMove   = storeOwnersList[storeOwnersList.length-1];
-      storeOwnersList[rowToDelete] = keyToMove;
-      storeOwners[keyToMove].listPointer = rowToDelete;
-      // storeOwners[entityAddress].entityData = false;
-      delete storeOwners[entityAddress] ;
-      storeOwnersList.length--;
+      uint256 rowToDelete = storeOwnersToBe[entityAddress].listPointer;
+      address keyToMove   = storeOwnersToBeList[storeOwnersToBeList.length-1];
+      storeOwnersToBeList[rowToDelete] = keyToMove;
+      storeOwnersToBe[keyToMove].listPointer = rowToDelete;
+      delete storeOwnersToBe[entityAddress];
+      storeOwnersToBeList.length--;
       return true;
     }
     ///////////////////////////////////////////////////////////
@@ -325,38 +316,18 @@ contract Marketplace {
       return true;
     }
 
-    function deleteStoreOwnerToBe(address entityAddress)
-    private
-    m_isAdministrator(msg.sender)
-    m_isNotadministratorToBe(msg.sender)
-    m_isNotmarketplaceowner(msg.sender)
-    m_isNotStoreOwner(msg.sender)
-    m_isNotStoreOwnerToBe(msg.sender)
-    m_isStoreOwnerToBe(entityAddress)
-    m_isNotStoreOwner(entityAddress)
-    m_isNotadministrator(entityAddress)
-    m_isNotadministratorToBe(entityAddress)
-    m_isNotmarketplaceowner(entityAddress)
-    returns(bool) {
-      uint256 rowToDelete = storeOwnersToBe[entityAddress].listPointer;
-      address keyToMove   = storeOwnersToBeList[storeOwnersToBeList.length-1];
-      storeOwnersToBeList[rowToDelete] = keyToMove;
-      storeOwnersToBe[keyToMove].listPointer = rowToDelete;
-      // storeOwnersToBe[entityAddress].entityData = false;
-      delete storeOwnersToBe[entityAddress];
-      storeOwnersToBeList.length--;
-      return true;
-    }
+
 
     // Shopper to administrator
 
     function isAdministratorToBe(address entityAddress)
     public
     constant
-    returns(bool isIndeed) {
-      if(administratorsToBeList.length == 0) return false;
+    returns(bool isinfoItemGivenId){
+      if (administratorsToBeList.length == 0) return false;
       return (administratorsToBeList[administratorsToBe[entityAddress].listPointer] == entityAddress);
     }
+
     function nbAdministratorsToBe()
     public
     constant
@@ -465,7 +436,6 @@ contract Marketplace {
         revert();
       }
       if (!newAdministrator(_administratorToBe, true)) {
-        /* console.log('prout'); */
         revert();
       }
       return nbAdministrators();

@@ -76,10 +76,8 @@ contract('Marketplace', function(accounts) {
       market = instance;
       return market.shopperPurchaseItemFromStore(accounts[2], 0, 1, {from:accounts[3], value:2, gasLimit: 300000, gasPrice: 2000000000})
     }).then(function () {
-      console.log('bla')
       return market.nbPurchasedGoods.call(accounts[3])
     }).then(function(N) {
-      console.log('bli')
       assert.equal(N, 1, "Shopper buys an item: FAILED");
     })
   });

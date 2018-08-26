@@ -9,13 +9,13 @@ import './App.css'
 
 function displayRole(role) {
     if (role === 0) {
-      document.getElementById("role").innerHTML ="<h1>Market Place Owner of the VinyL Marketplace</h1><p> You can approve administrator. </p>"
+      document.getElementById("role").innerHTML ="<h1>Market Place Owner of the Vinyl Marketplace</h1><p> You can approve administrator. </p>"
     } else if (role === 1) {
       document.getElementById("role").innerHTML = "<h1>Administrator</h1>"
     } else if (role === 2) {
-      document.getElementById("role").innerHTML = "<h1>Store Owner. Start selling some VinyLs!</h1>"
+      document.getElementById("role").innerHTML = "<h1>Store Owner. Start selling some Vinyl!</h1>"
     } else if (role === 3) {
-      document.getElementById("role").innerHTML = "<h1>Shopper. Start buying some VinyLs</h1>"
+      document.getElementById("role").innerHTML = "<h1>Shopper. Start buying some Vinyl</h1>"
     }
 }
 
@@ -143,7 +143,7 @@ class App extends Component {
     var btn = document.createElement("INPUT");
     btn.className="btn btn-danger btn-xs";
     btn.type = "button";
-    btn.name = "add";
+    btn.name infoItemGivenId
     btn.value="Request to Become an Administrator";
     btn.onclick = this.handleShopperBecomeAdministrator.bind(this);
 
@@ -276,9 +276,10 @@ class App extends Component {
 
 
       // Display Purchased Goods
-      contract.nbPurchasedGoods.call({from:accounts[0]}).then((result) => {
+      contract.nbPurchasedGoods.call(accounts[0]).then((result) => {
         if (result) {
           this.displayPurchasedGoods(accounts[0]);
+
         }
       })
     })
