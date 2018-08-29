@@ -33,10 +33,9 @@ By default, the first account created by Ganache is the owner of the contract.
 
 ## 	Set Up
 
-Please make sure to install zeppelin by running
+First make sure to install zeppelin by running in the truffle folder:
 `$ truffle install zeppelin`
 
-First install zeppelin by running
 * In a tab, start Ganache client :
 
 `$ ganache-cli` copy the Mnemonic generated
