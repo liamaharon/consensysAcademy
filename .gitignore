@@ -1,4 +1,4 @@
 .DS_Store
 truffle/build/
 truffle/installed_contracts/
-truffle/node_modules/.cache/
+truffle/node_modules
