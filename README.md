@@ -40,7 +40,11 @@ First make sure to install zeppelin by running in the truffle folder:
 
 `$ ganache-cli` copy the Mnemonic generated
 
-* In another tab, in the truffle folder: compile
+* In another tab, in the truffle folder, install the node dependencies
+
+`$ npm install`
+
+* Staying in the truffle folder, compile the smart contracts
 
 `$ truffle compile`
 
